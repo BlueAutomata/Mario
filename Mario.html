@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Mario</title>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mario</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="card border-info mb-3">
+        <div class="card-header">Pyramid</div>
+        <div class="card-body">
+
+            <div id="pyramid">
+
+            </div>
+            <button type="button" class="btn btn-primary" onclick="changeColor('purple')">Purple</button>
+            <button type="button" class="btn btn-secondary" onclick="changeColor('pink')">Pink</button>
+            <button type="button" class="btn btn-success" onclick="changeColor('green')">Green</button>
+            <button type="button" class="btn btn-info" onclick="changeColor('blue')">Blue</button>
+            <button type="button" class="btn btn-warning" onclick="changeColor('orange')">Orange</button>
+            <button type="button" class="btn btn-danger" onclick="changeColor('red')">Red</button>
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label mt-4" for="inputNumber">Input Height</label>
+            <input type="number" class="form-control" id="inputNumber">
+            <br>
+            <button class="btn btn-primary" type="button" onclick="createPyramid()">Summit</button>
+            <br>
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+        function createPyramid() {
+            var height = document.getElementById("inputNumber").value;
+
+            if (height == 0) {
+                alert("The number cannot be zero.");
+            }
+            else if (height < 0) {
+                alert("The number cannot be a negative number.");
+            }
+            else {
+                var html = "";
+
+                for (let i = 0; i < height; i++) {
+                    html = html + "<div>";
+                    for (let j = 0; j < i + 1; j++) {
+                        html = html + "<div class=\"square\"></div>";
+                    }
+                    html = html + "</div>";
+                }
+
+                document.getElementById("pyramid").innerHTML = html;
+            }
+
+
+        }
+
+        function changeColor(color) {
+            if (confirm("Set color to " + color + "?")) {
+                var elements = document.getElementsByClassName('square');
+                for (let e of elements) {
+                    e.style.backgroundColor = color;
+                }
+                alert("You set the color of the squares to " + color + ".");
+            }
+            else {
+                alert("You didn't want to set the colors to " + color + ".");
+            }
+        }
+    </script>
+</body>
+
+</html>
